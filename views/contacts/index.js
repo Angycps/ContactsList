@@ -104,7 +104,6 @@ ul.addEventListener('click', async e => {
 			console.log(error);
 		}
 
-
 	// Select edit-icon
 
 		try {
@@ -208,7 +207,6 @@ ul.addEventListener('click', async e => {
 
 
 
-
 	// Select cancel-icon
 
 		try {
@@ -247,18 +245,17 @@ ul.addEventListener('click', async e => {
 		try {
 
 			if (e.target.closest('.save-btn')) {
-				const listItem = e.target.closest('.save-btn').parentElement;
+				const editInput = e.target.closest('.save-btn').parentElement;
 				const name = e.target.closest('.save-btn').parentElement.children[0].value;
 				const number = e.target.closest('.save-btn').parentElement.children[1].value;
-				const editInput = e.target.closest('.save-btn').parentElement;
 				editInput.classList.add('flex', 'flex-row', 'bg-lime-100', 'rounded-lg', 'gap-4', 'p-4');
 
 				if (e.target.closest('.save-btn').parentElement.children[0].value === '' && e.target.closest('.save-btn').parentElement.children[1].value === '') {
 				
 					editInput.innerHTML = `
 				
-					<p class="text-zinc-900 flex justify-start items-center">${e.target.closest('.save-btn').parentElement.children[0].placeholder}</p>
-					<p class="text-zinc-900 flex justify-start items-center">${e.target.closest('.save-btn').parentElement.children[1].placeholder}</p>
+					<p  id="name-edit" class="text-zinc-900 flex justify-start items-center">${e.target.closest('.save-btn').parentElement.children[0].placeholder}</p>
+					<p  id="number-edit"  class="text-zinc-900 flex justify-start items-center">${e.target.closest('.save-btn').parentElement.children[1].placeholder}</p>
 		
 					<button class="del-btn m-2 p-2 flex justify-enditems-center bg-lime-300 rounded-full cursor-pointer scale-100 hover:scale-110 transition duration-300 easy-in-out">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -273,13 +270,18 @@ ul.addEventListener('click', async e => {
 					</button>
 			
 				`
+				const nameEdit = document.querySelector('#name-edit');
+				const numberEdit = document.querySelector('#number-edit');
 				console.log('amen 1');
+				await axios.patch(`/api/contacts/${editInput.id}`, { name: nameEdit.textContent, number: numberEdit.textContent });
+				console.log('amen 1.1');
 					
 				} else if (e.target.closest('.save-btn').parentElement.children[0].value === '') {
+
 					editInput.innerHTML = `
 				
-					<p class="text-zinc-900 flex justify-start items-center">${e.target.closest('.save-btn').parentElement.children[0].placeholder}</p>
-					<p class="text-zinc-900 flex justify-start items-center">${number}</p>
+					<p id="name-edit" class="text-zinc-900 flex justify-start items-center">${e.target.closest('.save-btn').parentElement.children[0].placeholder}</p>
+					<p id="number-edit" class="text-zinc-900 flex justify-start items-center">${number}</p>
 		
 					<button class="del-btn m-2 p-2 flex justify-enditems-center bg-lime-300 rounded-full cursor-pointer scale-100 hover:scale-110 transition duration-300 easy-in-out">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -294,13 +296,18 @@ ul.addEventListener('click', async e => {
 					</button>
 			
 				`
+				const nameEdit = document.querySelector('#name-edit');
+				const numberEdit = document.querySelector('#number-edit');
 				console.log('amen 2');
+				await axios.patch(`/api/contacts/${editInput.id}`, { name: nameEdit.textContent, number: numberEdit.textContent });
+				console.log('amen 2.1');
 					
 				} else if (e.target.closest('.save-btn').parentElement.children[1].value === '') {
+
 					editInput.innerHTML = `
 				
-					<p class="text-zinc-900 flex justify-start items-center">${name}</p>
-					<p class="text-zinc-900 flex justify-start items-center">${e.target.closest('.save-btn').parentElement.children[1].placeholder}</p>
+					<p id="name-edit" class="text-zinc-900 flex justify-start items-center">${name}</p>
+					<p id="number-edit" class="text-zinc-900 flex justify-start items-center">${e.target.closest('.save-btn').parentElement.children[1].placeholder}</p>
 		
 					<button class="del-btn m-2 p-2 flex justify-enditems-center bg-lime-300 rounded-full cursor-pointer scale-100 hover:scale-110 transition duration-300 easy-in-out">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -315,13 +322,18 @@ ul.addEventListener('click', async e => {
 					</button>
 			
 				`
+				const nameEdit = document.querySelector('#name-edit');
+				const numberEdit = document.querySelector('#number-edit');
 				console.log('amen 3');
+				await axios.patch(`/api/contacts/${editInput.id}`, { name: nameEdit.textContent, number: numberEdit.textContent });
+				console.log('amen 3.1');
 					
 				}else {
+
 					editInput.innerHTML = `
 				
-					<p placeholder class="text-zinc-900 flex justify-start items-center">${name}</p>
-					<p class="text-zinc-900 flex justify-start items-center">${number}</p>
+					<p id="name-edit" class="text-zinc-900 flex justify-start items-center">${name}</p>
+					<p id="number-edit" class="text-zinc-900 flex justify-start items-center">${number}</p>
 		
 					<button class="del-btn m-2 p-2 flex justify-enditems-center bg-lime-300 rounded-full cursor-pointer scale-100 hover:scale-110 transition duration-300 easy-in-out">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -336,28 +348,20 @@ ul.addEventListener('click', async e => {
 					</button>
 			
 				`
+				const nameEdit = document.querySelector('#name-edit');
+				const numberEdit = document.querySelector('#number-edit');
+				// console.log(nameEdit);
+				// console.log(numberEdit);
+				// console.log(nameEdit.textContent);
+				// console.log(numberEdit.textContent);
 				console.log('amen 4');
+				await axios.patch(`/api/contacts/${editInput.id}`, { name: nameEdit.textContent, number: numberEdit.textContent });
+				console.log('amen 4.1');
 				};
 
-				// await axios.patch('/api/contacts', { name: e.target.closest('.save-btn').parentElement.children[0].value, number: e.target.closest('.save-btn').parentElement.children[1].value });
-			
-				await axios.patch(`/api/contacts/${listItem.id}`);
-				
-				// await axios.patch(`/api/contacts/${listItem.id}`, { editInput });
 
 			}
 
-			// const { data } = await axios.pactch('/api/contacts');
-
-
-			// console.log('amen 5');
-			// localStorage.setItem('contactList', ul.innerHTML);
-
-			// await axios.pactch(`/api/contacts/${li.id}`);
-			// // Contador de contactos
-			// contactsCount();
-			// console.log('amen 6');
-			
 
 		} catch (error) {
 			console.log('error 2');
@@ -365,34 +369,13 @@ ul.addEventListener('click', async e => {
 		}
 
 
-		// Save in local storage
-		contactsCount();
-		localStorage.setItem('contactList', ul.innerHTML);
 
+		const { data } = await axios.get('/api/contacts', {
+			withCredentials: true,
+		});
 
+		console.log(data);
 
-
-
-	// // Select check-icon
-	// if (e.target.closest('.check-icon')) {
-	// 	const checkIcon = e.target.closest('.check-icon');
-	// 	const listItem = checkIcon.parentElement;
-	// 	if (!listItem.classList.contains('line-through')) {
-	// 		await axios.patch(`/api/todos/${listItem.id}`, { checked: true });
-	// 		checkIcon.classList.add('bg-green-400');
-	// 		checkIcon.classList.remove('hover:bg-green-300');
-	// 		listItem.classList.add('line-through', 'text-slate-400', 'dark:text-slate-600');
-	// 	} else {
-	// 		await axios.patch(`/api/todos/${listItem.id}`, { checked: false });
-	// 		checkIcon.classList.remove('bg-green-400');
-	// 		checkIcon.classList.add('hover:bg-green-300');
-	// 		listItem.classList.remove('line-through', 'text-slate-400', 'dark:text-slate-600');
-	// 	}
-
-	// 	// Save in local storage
-	// 	contactsCount();
-	// 	localStorage.setItem('contactList', ul.innerHTML);
-	// }
 });
 
 

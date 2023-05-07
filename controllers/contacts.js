@@ -44,11 +44,12 @@ contactsRouter.delete('/:id', async (request, response) => {
 contactsRouter.patch('/:id', async (request, response) => {
     const user = request.user;
 
-    const { editInput } = request.body;
+    const { name, number } = request.body;
 
-    await Contact.findByIdAndUpdate(request.params.id, { editInput });
-
+    await Contact.findByIdAndUpdate(request.params.id, { name, number });
+    await user.save();
     return response.sendStatus(200);
+
 
 });
 
