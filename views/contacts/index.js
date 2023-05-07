@@ -35,11 +35,14 @@ const validation = (input, regexValidation) => {
 nameInput.addEventListener('input', e => {
     letterValidation = LETTERS_REGEX.test(e.target.value);
     validation(nameInput, letterValidation);
+	validation(numInput, numberValidation);
 });
 
 numInput.addEventListener('input', e => {
     numberValidation = NUMBER_REGEX.test(e.target.value);
     validation(numInput, numberValidation);
+    validation(nameInput, letterValidation);
+
 });
 
 
@@ -82,6 +85,9 @@ form.addEventListener('submit', async e => {
 
     // Contador de contactos
 	contactsCount();
+
+	//disable addbtn
+	addBtn.disabled = true;
 });
 
 
